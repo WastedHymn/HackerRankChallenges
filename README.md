@@ -1,3 +1,3 @@
 # HackerRankChallenges
---Hackerrank Sock Merchant Challenge\n
---Hackerrank Counting Valleys Challenge\n
+Hackerrank Sock Merchant Challenge
+Hackerrank Counting Valleys Challenge
