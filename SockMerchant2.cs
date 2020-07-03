@@ -27,13 +27,11 @@ class Solution {
             }
         }
         
-        foreach(KeyValuePair<int, int> sock in socks){
+         foreach(KeyValuePair<int, int> sock in socks){
             Console.WriteLine(sock.Key+" "+sock.Value);
             int a = sock.Value;   
-            while(a>1){
-                a = a / 2;
-                pair++;
-            }       
+            a = a / 2;
+            pair += a;
         }
 
         return pair;
