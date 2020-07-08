@@ -1,67 +1,66 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
-public class Solution {
+class Solution {
 
     // Complete the jumpingOnClouds function below.
     static int jumpingOnClouds(int[] c) {
-        int counter = 0, index=0;
-        boolean val = true;
-        //index != c.size
+        int jumps=0;
+        int i=0;
+        bool toogle=false;
         while(true){
-            if((index + 2) < c.length){
-                if(c[index+2]==0){
-                    counter++;
-                    index += 2;
-                }else{
-                    if(c[index+1]==0){
-                        counter++;
-                        index += 1;
+            
+            if(i+2 < c.Length){    
+                if(c[i+2] != 1){
+                 i += 2;
+                 jumps++;
+                 toogle=true;
+                }
+            }
+
+            if(!toogle){
+                if(i+1 < c.Length){
+                    if(c[i+1] != 1){
+                        i += 1;
+                        jumps++;
                     }
                 }
-            }else if((index + 1) < c.length){
-                if(c[index+1]==0){
-                    counter++;
-                    index += 1;
-                }
-            }else{
+            }
+
+            toogle = false;
+
+            if(i==c.Length-1){
                 break;
             }
+         
         }
-       
-        return counter;
+
+        return jumps;
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
+    static void Main(string[] args) {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        int n = Convert.ToInt32(Console.ReadLine());
 
-        int n = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        int[] c = new int[n];
-
-        String[] cItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        for (int i = 0; i < n; i++) {
-            int cItem = Integer.parseInt(cItems[i]);
-            c[i] = cItem;
-        }
-
+        int[] c = Array.ConvertAll(Console.ReadLine().Split(' '), cTemp => Convert.ToInt32(cTemp))
+        ;
         int result = jumpingOnClouds(c);
 
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
+        textWriter.WriteLine(result);
 
-        bufferedWriter.close();
-
-        scanner.close();
+        textWriter.Flush();
+        textWriter.Close();
     }
 }
