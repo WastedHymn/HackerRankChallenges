@@ -21,7 +21,7 @@ int main()
                     //Swap j. element and i. element    
                     swap(arr[i], arr[j]);
                     ++counter;
-                    //Don't go further in the array to save time. 
+                    //Don't go any further in the array to save time. 
                     break;
                 }
             }
